@@ -1,0 +1,700 @@
+* {
+	margin: 0;
+	padding: 0;
+	color: #000;
+	moz-user-select: -moz-none;
+	-moz-user-select: none;
+	-o-user-select:none;
+	-khtml-user-select:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+}
+
+body {
+	overflow: hidden;
+	background-color: #282c35;
+}
+
+#iframeDiv {
+	width: 100vw;
+	height: 100vh;
+}
+
+#iframeDiv>iframe {
+	width: 100%;
+	height: 100%;
+	margin: -2px;
+}
+
+#screenAD {
+	width: 100vw;
+	height: 100vh;
+	text-align: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: linear-gradient(to right, #cb0d0d, #820000, #cb0d0d);
+	opacity: 0;
+}
+
+#screenAD>div {
+	width: 1000px;
+	height: 1858px;
+	max-width: 100%;
+	max-height: 100%;
+	text-align: right;
+	background-image: url("../imageS/微信图片_20230302154216.jpg");
+	background-repeat: no-repeat;
+	background-size: auto 100%;
+	background-position: center;
+	display: inline-block;
+}
+
+#screenAD>div>div {
+	width: 80px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	display: inline-block;
+	position: relative;
+	right: 40px;
+	top: 20px;
+	border-radius: 10px;
+	background-color: #ddd;
+}
+
+.MTK {
+	width: 100vw;
+	height: 100vh;
+	background-color: #000;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: .85;
+	display: none;
+}
+
+.MTK>.MTKclose {
+	width: 80px;
+	height: 80px;
+	text-align: center;
+	line-height: 80px;
+	font-size: 30px;
+	display: inline-block;
+	border-radius: 50%;
+	background-color: #ddd;
+	position: absolute;
+	top: 3vh;
+	right: 3vw;
+}
+
+.fenXiang {
+	width: 536px;
+	height: 412px;
+	background-color: #fff;
+	position: absolute;
+	top: calc(50vh - 206px);
+	left: calc(50vw - 268px);
+	display: none;
+}
+.fenXiang>span{
+	position: absolute;
+	right: 15px;
+	*right: 0;
+	top: 15px;
+	font-size: 0;
+	line-height: initial;
+}
+.fenXiang>span>a{
+	cursor: pointer;
+	position: relative;
+	width: 16px;
+	height: 16px;
+	margin-left: 10px;
+	font-size: 12px;
+	display: inline-block;
+	background: url("../imageS/icon.png") no-repeat;
+	background-position: 1px -40px;
+}
+.fenXiang>div:nth-child(1) {
+	height: 61px;
+	line-height: 60px;
+	padding: 0 0 0 24px;
+	border: 1px solid #E9E9E9;
+	background: #fff;
+	font-size: 18px;
+	color: #373737;
+}
+.fenXiang>div:nth-child(2)>div{
+	padding-top: 22px;
+	line-height: 38px;
+	margin-bottom: 16px;
+}
+.fenXiang>div:nth-child(2)>div>span {
+	font-size: 14px;
+	color: #6B6B6B;
+	width: 120px;
+	text-align: right;
+	box-sizing: border-box;
+	padding-right: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+.fenXiang>div:nth-child(2)>div>div{
+	height: 38px;
+	display: inline-block;
+	vertical-align: top;
+}
+.fenXiang>div:nth-child(2)>div>div>div:nth-child(1){
+	display: inline-block;
+	width: 280px;
+	height: 38px;
+	line-height: 36px;
+	box-sizing: border-box;
+	background: #F9F9F9;
+	border: 1px solid #E9E9E9;
+	border-radius: 2px;
+	font-size: 14px;
+	color: #303038;
+	padding-left: 16px;
+	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.fenXiang>div:nth-child(2)>div>div>div{
+	display: inline-block;
+	cursor: pointer;
+	width: 48px;
+	height: 30px;
+	border: 1px solid #D4902D;
+	border-radius: 2px;
+	box-sizing: border-box;
+	line-height: 30px;
+	font-size: 13px;
+	color: #D4902D;
+	text-align: center;
+	margin-left: 5px;
+	vertical-align: top;
+	margin-top: 4px;
+}
+.fenXiang>div:nth-child(2)>div:nth-child(2)>div>div{
+	height: auto;
+	width: auto;
+}
+.fenXiang>div:nth-child(2)>div:nth-child(2)>div>div>img{
+	width: 180px;
+	height: 180px;
+	margin: 16px 16px 0 0;
+}
+.WoMen{
+	width: 630px;
+	height: 422px;
+	background-color: #fff;
+	position: absolute;
+	top: calc(50vh - 211px);
+	left: calc(50vw - 315px);
+	display: none;
+}
+.WoMen>span{
+	position: absolute;
+	right: 15px;
+	*right: 0;
+	top: 15px;
+	font-size: 0;
+	line-height: initial;
+}
+.WoMen>span>a{
+	cursor: pointer;
+	position: relative;
+	width: 16px;
+	height: 16px;
+	margin-left: 10px;
+	font-size: 12px;
+	display: inline-block;
+	background: url("../imageS/icon.png") no-repeat;
+	background-position: 1px -40px;
+}
+.WoMen>div:nth-child(1) {
+	height: 61px;
+	line-height: 60px;
+	padding: 0 0 0 24px;
+	border: 1px solid #E9E9E9;
+	background: #fff;
+	font-size: 18px;
+	color: #373737;
+}
+
+/* //图片 */
+.Image{
+	width: 80vw;
+	height: 80vh;
+	line-height: 100%;
+	position: absolute;
+	top: 10vh;
+	left: 10vw;
+	overflow: hidden;
+	display: none;
+}
+.Image>span{
+	width: 60px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	background-color: rgba(255, 255, 255, .5);
+	border-radius: 40%;
+	display: block;
+	position: fixed;
+	top: 5vh;
+	left: 5vh;
+}
+.Image>span>a{
+	cursor: pointer;
+	position: relative;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	background: url("../imageS/icon.png") no-repeat;
+	background-position: 2px -38px;
+	transform:scale(2);
+}
+.Image>img{
+	max-width: 100%;
+	max-height: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* 打卡 */
+.DaKa {
+	width: 100vw;
+	height: 100vh;
+	background: url("../imageS/bg-pc.jpg") center center / cover;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+}
+.DaKa>span{
+	position: absolute;
+	left: 2vw;
+	top: 2vh;
+	font-size: 0;
+	line-height: initial;
+}
+.DaKa>span>a{
+	cursor: pointer;
+	position: relative;
+	width: 16px;
+	height: 16px;
+	margin-left: 10px;
+	display: inline-block;
+	background: url("../imageS/icon.png") no-repeat;
+	background-position: 1px -40px;
+	transform:scale(1.5);
+}
+/* 选关卡 */
+.DaKa>div:nth-child(1) {
+	width: 500px;
+	height: 550px;
+	position: absolute;
+	top: calc(50vh - 275px);
+	left: calc(50vw - 250px);
+	/* display: none; */
+}
+.DaKa>div:nth-child(1)>div:nth-child(1){
+	width: 100%;
+	height: 50px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 50px;
+	position: absolute;
+	top: -50px;
+}
+.DaKa>div:nth-child(1)>div:nth-child(2){
+	height: 350px;
+	overflow: hidden;
+}
+.DaKa>div:nth-child(1)>div:nth-child(2)>div{
+	width: 250px;
+	height: 50px;
+	position: absolute;
+	left: 125px;
+	display: inline-block;
+}
+.DaKa>div:nth-child(1)>div:nth-child(2)>div>div{
+	height: 330px;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	background-position: center;
+	display: inline-block;
+}
+.DaKa>div:nth-child(1)>div:nth-child(2)>div>div:nth-child(1){
+	background-image: url("../imageS/打卡/0.jpg");
+}
+.DaKa>div:nth-child(1)>div:nth-child(2)>div>div:nth-child(2){
+	background-image: url("../imageS/打卡/1.jpg");
+}
+.DaKa>div:nth-child(1)>div:nth-child(2)>div>div:nth-child(3){
+	background-image: url("../imageS/打卡/2.jpg");
+}
+.DaKa>div:nth-child(1)>div:nth-child(2)>div>div:nth-child(4){
+	background-image: url("../imageS/打卡/3.jpg");
+}
+.Left{
+	position: absolute;
+	width: 240px;
+	height: calc(290px);
+	left: 5px;
+	top: 5px;
+	font-weight: 500;
+	font-size: 4rem;
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 4px 0px;
+	border-radius: 4px;
+	transform: rotateY(288deg) translateZ(172px) scale(0.9);
+	visibility: visible;
+	transition: transform 0.5s ease 0s;
+	overflow: auto;
+	cursor: pointer;
+	box-sizing: border-box;
+	display: flex;
+	-moz-box-pack: center;
+	justify-content: center;
+	-moz-box-align: center;
+	align-items: center;
+}
+.Right{
+	position: absolute;
+	width: 240px;
+	height: calc(290px);
+	left: 5px;
+	top: 5px;
+	font-weight: 500;
+	font-size: 4rem;
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 4px 0px;
+	border-radius: 4px;
+	transform: rotateY(72deg) translateZ(172px) scale(0.9);
+	visibility: visible;
+	transition: transform 0.5s ease 0s;
+	overflow: auto;
+	cursor: pointer;
+	box-sizing: border-box;
+	display: flex;
+	-moz-box-pack: center;
+	justify-content: center;
+	-moz-box-align: center;
+	align-items: center;
+}
+.among{
+	position: absolute;
+	width: 240px;
+	height: calc(290px);
+	left: 5px;
+	top: 5px;
+	font-weight: 500;
+	font-size: 4rem;
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 4px 0px;
+	border-radius: 4px;
+	transform: rotateY(0deg) translateZ(172px);
+	visibility: visible;
+	transition: transform 0.5s ease 0s;
+	overflow: auto;
+	cursor: pointer;
+	border: 2px solid rgb(255, 237, 143);
+	box-sizing: border-box;
+	display: flex;
+	-moz-box-pack: center;
+	justify-content: center;
+	-moz-box-align: center;
+	align-items: center;
+}
+.none{
+	position: absolute;
+	width: 240px;
+	height: calc(290px);
+	left: 5px;
+	top: 5px;
+	font-weight: 500;
+	font-size: 4rem;
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 4px 0px;
+	border-radius: 4px;
+	transform: rotateY(144deg) translateZ(172px) scale(0.9);
+	visibility: hidden;
+	transition: transform 0.5s ease 0s;
+	overflow: auto;
+	cursor: pointer;
+	box-sizing: border-box;
+	display: flex;
+	-moz-box-pack: center;
+	justify-content: center;
+	-moz-box-align: center;
+	align-items: center;
+}
+.among>.border{
+	width: 224px;
+	height: 310px;
+	margin: 5px 5px;
+	border-radius: 4px;
+	border: 1px solid rgba(255, 237, 143, 0.6);
+}
+.DaKa>div:nth-child(1)>div:nth-child(3){
+	height: 100px;
+}
+.DaKa>div:nth-child(1)>div:nth-child(3)>div{
+	height: 35px;
+	font-size: 18px;
+	text-align: center;
+	line-height: 50px;
+}
+.DaKa>div:nth-child(1)>div:nth-child(3)>div>span{
+	width: 15px;
+	height: 15px;
+	margin: 0 6px;
+	border-radius: 50%;
+	box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, .3);
+	display: inline-block;
+	background-color: #fefcf6;
+	/* background-color: #f54500; */
+}
+.DaKa>div:nth-child(1)>div:nth-child(4){
+	text-align: center;
+}
+.Button{
+	max-width: 152px;
+	min-width: 100px;
+	width: 18vw;
+	height: 48px;
+	display: inline-block;
+	box-shadow: rgba(118, 87, 7, 0.2) 0px 2px 8px 0px;
+	border-radius: 60px;
+	padding: 2px;
+	transform: scale(0.9);
+}
+.ButtonOnly{
+	background: linear-gradient(rgb(246, 76, 0) 0%, rgb(234, 6, 0) 100%);
+}
+.ButtonNotSelected{
+	background: linear-gradient(rgb(224, 224, 224) 0%, rgb(185, 185, 185) 100%);
+}
+.Button>div{
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	box-shadow: rgba(118, 87, 7, 0.2) 0px 2px 8px 0px;
+	border-radius: 60px;
+	border: 1px solid rgba(255, 237, 143, 0.8);
+	box-sizing: border-box;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 20px;
+	letter-spacing: 2px;
+	text-shadow: rgba(89, 89, 89, 0.5) 0px 1px 2px;
+	display: flex;
+	-moz-box-align: center;
+	align-items: center;
+	-moz-box-pack: center;
+	justify-content: center;
+}
+.ButtonOnly>div{
+	color: rgb(255, 237, 143);
+}
+.ButtonNotSelected>div{
+	color: #fff;
+}
+
+/* 选性别、上传 */
+.DaKa>div:nth-child(2) {
+	width: 300px;
+	height: 700px;
+	position: absolute;
+	top: calc(50vh - 350px);
+	left: calc(50vw - 150px);
+	display: none;
+}
+.DaKa>div:nth-child(2)>div:nth-child(1) {
+	margin: -8px;
+	width: 318px;
+	height: 462px;
+	background: url("../imageS/打卡/photo-frame.png") center center / contain no-repeat;
+	text-align: center;
+	position: relative;
+	border-radius: 2px;
+	padding: 68px 20px 90px;
+	box-sizing: border-box;
+	display: flex;
+	-moz-box-pack: center;
+	justify-content: center;
+}
+.DaKa>div:nth-child(2)>div:nth-child(1)>div:nth-child(1) {
+	width: 210px;
+	height: 264px;
+	display: flex;
+	-moz-box-pack: center;
+	justify-content: center;
+	-moz-box-align: center;
+	align-items: center;
+	flex-direction: column;
+}
+.DaKa>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)>img{
+	max-width: 210px;
+	max-height: 264px;
+	position: absolute;
+}
+.DaKa>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)>input{
+	width: 100%;
+	height: 100%;
+	border: 1px solid red;
+	opacity: 0;
+	cursor: pointer;
+}
+.DaKa>div:nth-child(2)>div:nth-child(1)>div:nth-child(2) {
+	position: absolute;
+	height: 62px;
+	left: 0px;
+	right: 0px;
+	bottom: 33px;
+	display: flex;
+	-moz-box-pack: center;
+	justify-content: center;
+	-moz-box-align: center;
+	align-items: center;
+}
+
+.DaKa>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>img{
+	width: 200px;
+}
+.DaKa>div:nth-child(2)>div:nth-child(2),.DaKa>div:nth-child(2)>div:nth-child(3){
+	display: flex;
+	-moz-box-pack: center;
+	justify-content: center;
+}
+.DaKa>div:nth-child(2)>div:nth-child(2)>div{
+	display: flex;
+	margin: 2px 20px;
+	font-size: 16px;
+	font-weight: 500;
+	color: rgb(234, 6, 0);
+}
+.label{
+	width: 14px;
+	height: 14px;
+	background: #f6ebd0;
+	/* background: #ea0600; */
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 2px 0px;
+	border: 2px solid rgb(255, 255, 255);
+	border-radius: 50%;
+	margin-right: 8px;
+	position: relative;
+}
+.DaKa>div:nth-child(2)>div:nth-child(3){
+	margin-top: 30px;
+}
+.ipxuZL{
+	font-size: 12px;
+	margin-top: 20px;
+	color: rgba(0, 0, 0, 0.5);
+	max-width: 210px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+.amongImgDiv{
+	width: 30vw;
+	height: 50vh;
+	position: fixed;
+	top: calc(50vh - 400px);
+	left: calc(50vw - 800px);
+	border: 1px solid #000;
+	background-color: rgba(0, 0, 0, .3);
+	/* display: none; */
+	overflow: auto;
+	z-index: 100;
+	opacity: 0;
+}
+.amongImgDiv>img:nth-child(2){
+	max-width: 800px;
+	max-height: 800px;
+	display: inline-block;
+}
+/* 等待模态框 */
+.DaKa>div:nth-child(3){
+	transition: opacity 0.5s ease 0s;
+	text-align: center;
+	background: rgba(0, 0, 0, 0.4);
+	position: absolute;
+	inset: 0px;
+	-moz-box-pack: center;
+	justify-content: center;
+	-moz-box-align: center;
+	align-items: center;
+	opacity: 1;
+	display: none;
+}
+.DaKa>div:nth-child(3)>div{
+	width: 282px;
+	height: 96px;
+	background: rgb(255, 255, 255);
+	box-shadow: rgba(6, 46, 95, 0.2) 0px 2px 10px 0px;
+	border-radius: 12px;
+	display: inline-block;
+	-moz-box-pack: center;
+	justify-content: center;
+	-moz-box-align: center;
+	align-items: center;
+	line-height: 90px;
+	font-size: 14px;
+	color: rgb(17, 17, 21);
+	text-shadow: rgba(6, 46, 95, 0.2) 0px 2px 10px;
+	position: absolute;
+	top: calc(50vh - 47px);
+	left: calc(50vw - 141px);
+}
+.DaKa>div:nth-child(3)>div>span{
+	position: absolute;
+	top: -20px;
+}
+/* 结束 */
+.DaKa>div:nth-child(4) {
+	width: 60vw;
+	height: 92vh;
+	position: absolute;
+	top: 4vh;
+	left: 20vw;
+	display: none;
+}
+.DaKa>div:nth-child(4)>div:nth-child(1) {
+	height: calc(80vh - 50px);
+	position: relative;
+	user-select: none;
+	overflow: hidden;
+}
+.DaKa>div:nth-child(4)>div:nth-child(1)>img {
+	position: absolute;
+	max-height: 100%;
+	max-width: 100%;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	margin: auto;
+	z-index: 100;
+	border-radius: 6px;
+}
+.DaKa>div:nth-child(4)>div:nth-child(2) {
+	text-align: center;
+}
+.DaKa>div:nth-child(4)>div:nth-child(2)>div{
+	margin-top: 28px;
+	display: inline-block;
+}
+.DaKa>div:nth-child(4)>div:nth-child(2)>div:nth-child(1){
+	background: linear-gradient(rgb(246, 76, 0) 0%, rgb(234, 6, 0) 100%);
+}
+.DaKa>div:nth-child(4)>div:nth-child(2)>div:nth-child(2){
+	background: rgb(203, 153, 100);
+}
+.DaKa>div:nth-child(4)>div:nth-child(2)>div>div{
+	color: rgb(255, 237, 143);
+}
