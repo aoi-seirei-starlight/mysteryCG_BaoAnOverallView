@@ -44,7 +44,7 @@ body {
 	max-width: 100%;
 	max-height: 100%;
 	text-align: right;
-	background-image: url("../imageS/微信图片_20230302154216.jpg");
+	background-image: url("../imageS/AD.jpg");
 	background-repeat: no-repeat;
 	background-size: auto 100%;
 	background-position: center;
@@ -61,7 +61,7 @@ body {
 	right: 40px;
 	top: 20px;
 	border-radius: 10px;
-	background-color: #ddd;
+	background-color: #fff;
 }
 
 .MTK {
@@ -90,12 +90,12 @@ body {
 }
 
 .fenXiang {
-	width: 536px;
-	height: 412px;
+	width: 550px;
+	height: 450px;
 	background-color: #fff;
 	position: absolute;
-	top: calc(50vh - 206px);
-	left: calc(50vw - 268px);
+	top: calc(50vh - 225px);
+	left: calc(50vw - 275px);
 	display: none;
 }
 .fenXiang>span{
@@ -148,14 +148,14 @@ body {
 }
 .fenXiang>div:nth-child(2)>div>div>div:nth-child(1){
 	display: inline-block;
-	width: 280px;
+	width: 255px;
 	height: 38px;
 	line-height: 36px;
 	box-sizing: border-box;
 	background: #F9F9F9;
 	border: 1px solid #E9E9E9;
 	border-radius: 2px;
-	font-size: 14px;
+	font-size: 12px;
 	color: #303038;
 	padding-left: 16px;
 	text-align: left;
@@ -188,13 +188,60 @@ body {
 	height: 180px;
 	margin: 16px 16px 0 0;
 }
+.fenXiangPe{
+	width: 100vw;
+	height: 100vh;
+	background: url("../imageS/bg-pc.jpg") center center / cover;
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: none;
+}
+.fenXiangPe>div{
+	width: 300px;
+	height: 700px;
+	text-align: center;
+	position: absolute;
+	top: calc(50vh - 350px);
+	left: calc(50vw - 150px);
+}
+.fenXiangPe>div>img{
+	width: 100%;
+}
+.fenXiangPe>div>div{
+	margin-top: 20px;
+	font-size: 20px;
+	color: #ea0600;
+}
+.fenXiangPe>span{
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 40%;
+	display: block;
+	position: fixed;
+	top: 2vh;
+	left: 2vh;
+}
+.fenXiangPe>span>a{
+	cursor: pointer;
+	position: relative;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	background: url("../imageS/icon.png") no-repeat;
+	background-position: 2px -38px;
+	transform:scale(1.5);
+}
 .WoMen{
-	width: 630px;
+	width: 400px;
 	height: 422px;
 	background-color: #fff;
 	position: absolute;
 	top: calc(50vh - 211px);
-	left: calc(50vw - 315px);
+	left: calc(50vw - 200px);
 	display: none;
 }
 .WoMen>span{
@@ -303,7 +350,7 @@ body {
 	position: absolute;
 	top: calc(50vh - 275px);
 	left: calc(50vw - 250px);
-	/* display: none; */
+	display: none;
 }
 .DaKa>div:nth-child(1)>div:nth-child(1){
 	width: 100%;
@@ -463,9 +510,7 @@ body {
 	text-align: center;
 }
 .Button{
-	max-width: 152px;
-	min-width: 100px;
-	width: 18vw;
+	width: 152px;
 	height: 48px;
 	display: inline-block;
 	box-shadow: rgba(118, 87, 7, 0.2) 0px 2px 8px 0px;
@@ -682,19 +727,24 @@ body {
 	z-index: 100;
 	border-radius: 6px;
 }
-.DaKa>div:nth-child(4)>div:nth-child(2) {
+.DaKa_FenXiang{
+	font-size: 20px;
+	color: #ea0600;
+	margin-top: -30px;
+}
+.DaKa>div:nth-child(4)>div:nth-child(3) {
 	text-align: center;
 }
-.DaKa>div:nth-child(4)>div:nth-child(2)>div{
+.DaKa>div:nth-child(4)>div:nth-child(3)>div{
 	margin-top: 28px;
 	display: inline-block;
 }
-.DaKa>div:nth-child(4)>div:nth-child(2)>div:nth-child(1){
+#DownloadButton{
 	background: linear-gradient(rgb(246, 76, 0) 0%, rgb(234, 6, 0) 100%);
 }
-.DaKa>div:nth-child(4)>div:nth-child(2)>div:nth-child(2){
+#NextOpenDaKa{
 	background: rgb(203, 153, 100);
 }
-.DaKa>div:nth-child(4)>div:nth-child(2)>div>div{
+#NextOpenDaKa>div,#DownloadButton>div{
 	color: rgb(255, 237, 143);
 }
