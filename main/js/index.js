@@ -336,7 +336,6 @@ function JqueryAjaxGetPhoto(image_template, image_target) {
 				url: "/php/updata.php",
 				type: "POST",
 				data: {
-					"Host": "https://aip.baidubce.com/rest/2.0/face/v1/merge?access_token=",
 					"access_token": access_token,
 					"image_template": image_template,
 					"image_target": image_target

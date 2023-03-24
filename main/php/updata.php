@@ -31,17 +31,7 @@ function request_post($url = '', $param = '')
 	return $data;
 }
 
-$url = $_POST["Host"] . $_POST["access_token"];
+$url = "https://aip.baidubce.com/rest/2.0/face/v1/merge?access_token=" . $_POST["access_token"];
 $bodys = "{\"image_template\":{\"image\":\"" . $_POST["image_template"] . "\",\"image_type\":\"BASE64\"},\"image_target\":{\"image\":\"" . $_POST["image_target"] . "\",\"image_type\":\"BASE64\"}}";
-
 $res = request_post($url, $bodys);
-
-$origin[] = array(
-	'url' => $url,
-	'access_token' => $bodys,
-	'image_template' => $_POST["image_template"],
-	'image_target' => $_POST["image_target"]
-);
-$json = json_encode($origin);
-file_put_contents('index.json', $json);
 ?>
