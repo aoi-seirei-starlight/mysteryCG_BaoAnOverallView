@@ -35,10 +35,10 @@ body {
 	top: 0;
 	left: 0;
 	background-image: linear-gradient(to right, #cb0d0d, #820000, #cb0d0d);
-	opacity: 0;
+	opacity: 1;
 }
 
-#screenAD>div {
+#screenAD>#timeDiv {
 	width: 1000px;
 	height: 1858px;
 	max-width: 100%;
@@ -51,7 +51,7 @@ body {
 	display: inline-block;
 }
 
-#screenAD>div>div {
+#screenAD>#timeDiv>div {
 	width: 80px;
 	height: 30px;
 	text-align: center;
@@ -62,6 +62,27 @@ body {
 	top: 20px;
 	border-radius: 10px;
 	background-color: #fff;
+}
+#unity-loading-bar {
+	position: absolute;
+	left: 50%;
+	top: 58%;
+	transform: translate(-50%, -50%);
+}
+
+#unity-progress-bar-empty {
+	width: 141px;
+	height: 18px;
+	margin-top: 10px;
+	margin-left: 6.5px;
+	background: url('../BaoAn_Unity/TemplateData/progress-bar-empty-dark.png') no-repeat center
+}
+
+#unity-progress-bar-full {
+	width: 0%;
+	height: 18px;
+	margin-top: 10px;
+	background: url('../BaoAn_Unity/TemplateData/progress-bar-full-dark.png') no-repeat center
 }
 
 .MTK {
@@ -281,14 +302,14 @@ body {
 	position: absolute;
 	top: 10vh;
 	left: 10vw;
-	overflow: hidden;
+	overflow: auto;
 	display: none;
 }
 .Image>span{
-	width: 60px;
-	height: 60px;
+	width: 30px;
+	height: 30px;
 	text-align: center;
-	line-height: 60px;
+	line-height: 30px;
 	background-color: rgba(255, 255, 255, .5);
 	border-radius: 40%;
 	display: block;
@@ -304,13 +325,23 @@ body {
 	display: inline-block;
 	background: url("../imageS/icon.png") no-repeat;
 	background-position: 2px -38px;
-	transform:scale(2);
+	/* transform:scale(2); */
 }
-.Image>img{
-	max-width: 100%;
-	max-height: 100%;
+.Image>div{
+	width: 80vw;
+	height: 80vh;
 	position: absolute;
-	top: 50%;
+	left: 0;
+	top: 0;
+}
+.Image>div>img{
+	height: 100%;
+	display: block;
+	position: absolute;
+}
+.Image>input{
+	position: fixed;
+	bottom: 30px;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }

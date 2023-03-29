@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="Access-Control-Allow-Origin:*" content="*">
 		<title>奋进新时代</title>
 		<link rel="stylesheet" href="css/index.css" type="text/css" />
@@ -13,8 +14,14 @@
 			<iframe src="BaoAn_Unity/BaoAn_Unity.html"></iframe>
 		</div>
 		<div id="screenAD">
-			<div>
-				<div>5秒</div>
+			<div id="timeDiv">
+				<!-- <div>5秒</div> -->
+			</div>
+			<div id="unity-loading-bar">
+			  <!-- <div id="unity-logo"></div> -->
+			  <div id="unity-progress-bar-empty">
+			    <div id="unity-progress-bar-full"></div>
+			  </div>
 			</div>
 		</div>
 		<div class="MTK"></div>
@@ -64,7 +71,10 @@
 		</div>
 		<div class="Image">
 			<span onclick="CloseImg()"><a></a></span>
-			<img/>
+				<div>
+					<img id="ImageOnly" src="BaoAn_Unity/StreamingAssets/360ImgS/1.jpg"/>
+				</div>
+			<input type="range" id="ImageRange" max="200"/>
 		</div>
 		<div class="DaKa">
 			<div>
@@ -157,8 +167,10 @@
 				<a href="javascript:;" onclick="CloseDaKa()"></a>
 			</span>
 		</div>
+		<div id="qrcode" style="width: 100px;height: 100px;position: fixed;top: 100px;left: 100px;display: none;"></div>
 	</body>
 	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/qrcode.min.js"></script>
 	<script src="js/index.js"></script>
 	<script type="text/javascript">
 		

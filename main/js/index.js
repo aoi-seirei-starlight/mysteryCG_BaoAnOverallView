@@ -1,5 +1,13 @@
-var screenADTime = 3;
+['dragstart'].forEach(function(ev){
+    document.addEventListener(ev, function(ev){
+        ev.preventDefault();
+        ev.returnValue = false;
+    })
+});
+
+var screenADTime = 2;
 var thisTime = 0;
+var overallProgress = 0;
 var thisDaKaNumber = 0;
 var thisDaKaSEX = 1;
 var MakePhotoButtonReady = false;
@@ -26,6 +34,14 @@ var DaKaImgTextArray = [
 console.log(DaKaImgTextArray);
 
 $(function() {
+	$("#ImageRange").val(0);
+	ImageRangeOnchange();
+	var a = setInterval(function(){
+		$("#unity-progress-bar-full").css("width",100 * overallProgress + "%");
+		if(overallProgress >= 1){
+			clearInterval(a);
+		}
+	},100);
 	var iframe = document.querySelector("iframe");
 	if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
 		// Mobile device style: fill the whole browser client area with the game canvas:
@@ -43,23 +59,19 @@ $(function() {
 		document.getElementById('DownloadText').style.display = "none";
 		isMobile = false;
 	}
-	window.URL = window.URL || window.webkitURL;
-	console.log(document.getElementById('FenXiangEWM').src);
-	var xhr = new XMLHttpRequest();
-	xhr.open("get", document.getElementById('FenXiangEWM').src, true);
-	xhr.responseType = "blob";
-	xhr.onload = function() {
-		if (this.status == 200) {
-			var blob = this.response;
-			console.log("blob", blob)
-			let oFileReader = new FileReader();
-			oFileReader.onloadend = function(e) {
-				fenXiangImgEWMBase64 = e.target.result;
-			};
-		 oFileReader.readAsDataURL(blob);
+	var qrcode = new QRCode(document.getElementById("qrcode"), {
+		text : window.location.href,
+		width : 100,
+		height : 100
+	});
+	var b = setInterval(function(){
+		if($("#qrcode>img").attr('src') != 0){
+			fenXiangImgEWMBase64 = $("#qrcode>img").attr('src');
+			document.querySelector("#FenXiangEWM").src = fenXiangImgEWMBase64;
+			console.log(fenXiangImgEWMBase64);
+			clearInterval(b);
 		}
-	}
-	xhr.send();
+	},100);
 });
 
 var loadImgNum = 0;
@@ -83,8 +95,6 @@ function BGimgInit(){
 
 //分享链接
 document.querySelector("#FenXiangUrl").innerHTML = window.location.href;
-document.querySelector("#FenXiangEWM").src = "https://api.qrserver.com/v1/create-qr-code?data=" + window.location
-	.href;
 //复制分享链接
 function CopyUrl() {
 	var text = window.location.href;
@@ -139,8 +149,8 @@ function OpenWE() {
 function OpenImg(imgNumber) {
 	mtkDom.style.display = "block";
 	imageDom.style.display = "block";
-	document.querySelector(".Image>img").src = "";
-	document.querySelector(".Image>img").src = "../imageS/" + imgNumber;
+	document.querySelector("#ImageOnly").src = "";
+	document.querySelector("#ImageOnly").src = "../imageS/" + imgNumber;
 	console.log("打开图片" + imgNumber);
 }
 
@@ -190,14 +200,16 @@ function OnLoading() {
 	screenImgDom.style.opacity = 1;
 	var a = setInterval(function() {
 		thisTime += 100;
-		screenImgDomText.innerHTML = screenADTime - parseInt(thisTime / 1000) + "秒";
+		// screenImgDomText.innerHTML = screenADTime - parseInt(thisTime / 1000) + "秒";
 		if (thisTime >= screenADTime * 1000) {
 			var b = setInterval(function() {
 				if (screenImgDom.style.opacity >= 0.1) {
 					screenImgDom.style.opacity = screenImgDom.style.opacity - 0.02;
+					
 				} else {
 					screenImgDom.style.opacity = 1;
 					screenImgDom.style.display = "none";
+					GlobalUnityInstance.SendMessage('Start','Play');
 					clearInterval(b);
 				}
 			}, 10);
@@ -229,6 +241,18 @@ function CloseDaKa(number) {
 	mtkDom.style.display = "none";
 	DaKaDom.style.display = "none";
 	console.log("退出打卡");
+}
+
+function ImageRangeOnchange(){
+	$("#ImageRange").on("input",function(){
+		var val = parseInt($("#ImageRange").val())+80;
+		$(".Image>div").css("width",val+"vw");
+		$(".Image>div").css("height",val+"vh");
+		$(".Image")[0].scrollTop = $(".Image")[0].scrollTopMax/2;
+		$(".Image")[0].scrollLeft = $(".Image")[0].scrollLeftMax/2;
+		$("#p1").html($(".Image")[0].scrollTopMax);
+		$("#p2").html($(".Image")[0].scrollLeftMax);
+	});
 }
 
 function SwitchDaKaNumber(numberNext, number, numberPrevious, numberNone) {
@@ -321,19 +345,17 @@ function GetImageBase64(img, ext) {
 //ajax请求
 function JqueryAjaxGetPhoto(image_template, image_target) {
 	$.ajax({
-		url: "../php/updata.php",
-		type: "POST",
-		data: {
-			"Host": "https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=ptqMfywAWIGrG5NSFCbna0ee&client_secret=6BooUcWbALkBPlGfzS8oXEdnhvdOEaEU"
-		},
+		url: "../php/GetAT.php",
+		dataType: "json",
 		error: function() {
 			InputImage("1000");
 			return;
 		},
 		success: function(data, status) { //如果调用php成功
-			var access_token = $.parseJSON(data).access_token;
+			console.log(data.access_token);
+			var access_token = data.access_token;
 			$.ajax({
-				url: "/php/updata.php",
+				url: "../php/updata.php",
 				type: "POST",
 				data: {
 					"access_token": access_token,
@@ -355,6 +377,7 @@ function JqueryAjaxGetPhoto(image_template, image_target) {
 }
 
 function InputImage(JsonString) {
+	console.log(JsonString);
 	if (JsonString == "1000") {
 		console.log("连接验证服务器不成功！");
 		MTKClear("连接验证服务器不成功！");
@@ -381,27 +404,34 @@ function InputImage(JsonString) {
 	}
 	console.log("合成成功");
 	var base64CreatePhoto = jsonCreatePhoto.result.merge_image;
-	document.querySelectorAll(".DaKa>div")[1].style.display = "none";
-	document.querySelectorAll(".DaKa>div")[2].style.display = "none";
-	document.querySelectorAll(".DaKa>div")[3].style.display = "block";
 	var imgBG = document.createElement('img');
 	var imgEWM = document.createElement('img');
 	imgBG.src = "data:image/png;base64," + base64CreatePhoto;
 	imgEWM.src = fenXiangImgEWMBase64;
-	console.log(imgEWM);
+	// console.log(imgEWM);
 	var canvas = document.createElement("canvas");
 	canvas.width = 922;
 	canvas.height = 1800;
 	var ctx = canvas.getContext("2d");
 	imgBG.onload = function(){
-		imgEWM.onload = function(){
-			ctx.drawImage(imgBG, 0, 0, 922, 1800);
-			ctx.drawImage(imgEWM, 68, 1630, 124, 124);
-				
-			var dataURL = canvas.toDataURL("image/jpeg"); //返回的是一串Base64编码的URL并指定格式
-			canvas = null; //释放
-			document.getElementById("HandleEndPhoto").src = dataURL;
-		}
+		var b_length = 0;
+		var b =setInterval(function(){
+			if(b_length++ > 10){
+				ctx.drawImage(imgBG, 0, 0, 922, 1800);
+				ctx.drawImage(imgEWM, 68, 1630, 124, 124);
+					
+				var dataURL = canvas.toDataURL("image/jpeg"); //返回的是一串Base64编码的URL并指定格式
+				canvas = null; //释放
+				document.getElementById("HandleEndPhoto").src = dataURL;
+				document.querySelectorAll(".DaKa>div")[1].style.display = "none";
+				document.querySelectorAll(".DaKa>div")[2].style.display = "none";
+				document.querySelectorAll(".DaKa>div")[3].style.display = "block";
+				clearInterval(b);
+			}
+		},100);
+		// imgEWM.onload = function(){
+			
+		// }
 	}
 
 	function MTKClear(errMessage) {
