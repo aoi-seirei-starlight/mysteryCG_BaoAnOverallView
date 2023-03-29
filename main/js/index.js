@@ -34,6 +34,7 @@ var DaKaImgTextArray = [
 console.log(DaKaImgTextArray);
 
 $(function() {
+	console.log("v2023-03-29-b1");
 	$("#ImageRange").val(0);
 	ImageRangeOnchange();
 	var a = setInterval(function(){
