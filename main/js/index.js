@@ -55,10 +55,10 @@ $(function() {
 
 		document.getElementById('DownloadButton').style.display = "none";
 		
-		isMobile = true;
+		// isMobile = true;
 	} else {
 		document.getElementById('DownloadText').style.display = "none";
-		isMobile = false;
+		// isMobile = false;
 	}
 	var qrcode = new QRCode(document.getElementById("qrcode"), {
 		text : window.location.href,
@@ -114,24 +114,24 @@ function OpenUrl() {
 
 function OpenShare() {
 	if (isMobile) {
-		var imgBG = document.getElementById('FenXiangPEBGImg');
-		var imgEWM = document.createElement('img');
-		imgEWM.src = fenXiangImgEWMBase64;
-		console.log(imgEWM);
-		var canvas = document.createElement("canvas");
-		canvas.width = 1080;
-		canvas.height = 2143;
-		var ctx = canvas.getContext("2d");
-		imgEWM.onload = function(){
-			ctx.drawImage(imgBG, 0, 0, 1080, 2143);
-			ctx.drawImage(imgEWM, 50, 1893, 200, 200);
+		// var imgBG = document.getElementById('FenXiangPEBGImg');
+		// var imgEWM = document.createElement('img');
+		// imgEWM.src = fenXiangImgEWMBase64;
+		// console.log(imgEWM);
+		// var canvas = document.createElement("canvas");
+		// canvas.width = 1080;
+		// canvas.height = 2143;
+		// var ctx = canvas.getContext("2d");
+		// imgEWM.onload = function(){
+		// 	ctx.drawImage(imgBG, 0, 0, 1080, 2143);
+		// 	ctx.drawImage(imgEWM, 50, 1893, 200, 200);
 
-			var dataURL = canvas.toDataURL("image/jpeg"); //返回的是一串Base64编码的URL并指定格式
-			canvas = null; //释放
-			document.getElementById('FenXiangPEImg').src = dataURL;
+		// 	var dataURL = canvas.toDataURL("image/jpeg"); //返回的是一串Base64编码的URL并指定格式
+		// 	canvas = null; //释放
+		// 	document.getElementById('FenXiangPEImg').src = dataURL;
 			
-		}
-		
+		// }
+		document.getElementById('FenXiangPEImg').src = "imageS/FXBG.jpg";
 		fenXiangPEDom.style.display = "block";
 		console.log("手机打开分享");
 	} else {
@@ -405,35 +405,37 @@ function InputImage(JsonString) {
 	}
 	console.log("合成成功");
 	var base64CreatePhoto = jsonCreatePhoto.result.merge_image;
-	var imgBG = document.createElement('img');
-	var imgEWM = document.createElement('img');
-	imgBG.src = "data:image/png;base64," + base64CreatePhoto;
-	imgEWM.src = fenXiangImgEWMBase64;
-	// console.log(imgEWM);
-	var canvas = document.createElement("canvas");
-	canvas.width = 922;
-	canvas.height = 1800;
-	var ctx = canvas.getContext("2d");
-	imgBG.onload = function(){
-		var b_length = 0;
-		var b =setInterval(function(){
-			if(b_length++ > 10){
-				ctx.drawImage(imgBG, 0, 0, 922, 1800);
-				ctx.drawImage(imgEWM, 68, 1630, 124, 124);
+	// var imgBG = document.createElement('img');
+	// var imgEWM = document.createElement('img');
+	// imgBG.src = "data:image/png;base64," + base64CreatePhoto;
+	// imgEWM.src = fenXiangImgEWMBase64;
+	// // console.log(imgEWM);
+	// var canvas = document.createElement("canvas");
+	// canvas.width = 922;
+	// canvas.height = 1800;
+	// var ctx = canvas.getContext("2d");
+	// imgBG.onload = function(){
+	// 	var b_length = 0;
+	// 	var b =setInterval(function(){
+	// 		if(b_length++ > 10){
+	// 			ctx.drawImage(imgBG, 0, 0, 922, 1800);
+	// 			ctx.drawImage(imgEWM, 68, 1630, 124, 124);
 					
-				var dataURL = canvas.toDataURL("image/jpeg"); //返回的是一串Base64编码的URL并指定格式
-				canvas = null; //释放
-				document.getElementById("HandleEndPhoto").src = dataURL;
-				document.querySelectorAll(".DaKa>div")[1].style.display = "none";
-				document.querySelectorAll(".DaKa>div")[2].style.display = "none";
-				document.querySelectorAll(".DaKa>div")[3].style.display = "block";
-				clearInterval(b);
-			}
-		},100);
-		// imgEWM.onload = function(){
-			
-		// }
-	}
+	// 			var dataURL = canvas.toDataURL("image/jpeg"); //返回的是一串Base64编码的URL并指定格式
+	// 			canvas = null; //释放
+	// 			document.getElementById("HandleEndPhoto").src = dataURL;
+	// 			document.querySelectorAll(".DaKa>div")[1].style.display = "none";
+	// 			document.querySelectorAll(".DaKa>div")[2].style.display = "none";
+	// 			document.querySelectorAll(".DaKa>div")[3].style.display = "block";
+	// 			clearInterval(b);
+	// 		}
+	// 	},100);
+	// }
+	
+	document.getElementById("HandleEndPhoto").src = "data:image/png;base64," + base64CreatePhoto;
+	document.querySelectorAll(".DaKa>div")[1].style.display = "none";
+	document.querySelectorAll(".DaKa>div")[2].style.display = "none";
+	document.querySelectorAll(".DaKa>div")[3].style.display = "block";
 
 	function MTKClear(errMessage) {
 		document.querySelector("#UpDataPhotoMTK>div").innerHTML = errMessage + "<span></span>";
