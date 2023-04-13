@@ -34,7 +34,7 @@ var DaKaImgTextArray = [
 console.log(DaKaImgTextArray);
 
 $(function() {
-	console.log("v2023-03-29-b1");
+	console.log("v2023-04-11-b1");
 	$("#ImageRange").val(0);
 	ImageRangeOnchange();
 	var a = setInterval(function(){
@@ -55,10 +55,10 @@ $(function() {
 
 		document.getElementById('DownloadButton').style.display = "none";
 		
-		// isMobile = true;
+		isMobile = true;
 	} else {
 		document.getElementById('DownloadText').style.display = "none";
-		// isMobile = false;
+		isMobile = false;
 	}
 	var qrcode = new QRCode(document.getElementById("qrcode"), {
 		text : window.location.href,
@@ -336,7 +336,7 @@ function GetImageBase64(img, ext) {
 	var canvas = document.createElement("canvas"); //创建canvas DOM元素，并设置其宽高和图片一样
 	canvas.width = img.width;
 	canvas.height = img.height;
-	console.log(img.width, img.height);
+	// console.log(img.width, img.height);
 	var ctx = canvas.getContext("2d");
 	ctx.drawImage(img, 0, 0, img.width, img.height); //使用画布画图
 	var dataURL = canvas.toDataURL("image/" + ext); //返回的是一串Base64编码的URL并指定格式
@@ -347,13 +347,17 @@ function GetImageBase64(img, ext) {
 function JqueryAjaxGetPhoto(image_template, image_target) {
 	$.ajax({
 		url: "../php/GetAT.php",
+		type: "POST",
+		data: {
+			"___--__-":"--___--__-"
+		},
 		dataType: "json",
 		error: function() {
 			InputImage("1000");
 			return;
 		},
 		success: function(data, status) { //如果调用php成功
-			console.log(data.access_token);
+			// console.log(data.access_token);
 			var access_token = data.access_token;
 			$.ajax({
 				url: "../php/updata.php",
@@ -378,7 +382,7 @@ function JqueryAjaxGetPhoto(image_template, image_target) {
 }
 
 function InputImage(JsonString) {
-	console.log(JsonString);
+	// console.log(JsonString);
 	if (JsonString == "1000") {
 		console.log("连接验证服务器不成功！");
 		MTKClear("连接验证服务器不成功！");
