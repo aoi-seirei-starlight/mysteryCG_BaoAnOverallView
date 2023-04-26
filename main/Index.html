@@ -71,10 +71,22 @@
 		</div>
 		<div class="Image">
 			<span onclick="CloseImg()"><a></a></span>
-				<div>
-					<img id="ImageOnly" src="BaoAn_Unity/StreamingAssets/360ImgS/1.jpg"/>
-				</div>
-			<input type="range" id="ImageRange" max="200"/>
+			<div class="imgW">
+				<img id="ImageOnly" src="BaoAn_Unity/StreamingAssets/360ImgS/1.jpg"/>
+			</div>
+			<div id="msg">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<!-- <input type="range" id="ImageRange" max="200"/> -->
 		</div>
 		<div class="DaKa">
 			<div>
@@ -166,6 +178,10 @@
 			<span>
 				<a href="javascript:;" onclick="CloseDaKa()"></a>
 			</span>
+		</div>
+		<div id="video">
+			<span onclick="EndVideo()"><a></a></span>
+			<video class="peVideo" controls="controls"></video>
 		</div>
 		<div id="qrcode" style="width: 100px;height: 100px;position: fixed;top: 100px;left: 100px;display: none;"></div>
 	</body>

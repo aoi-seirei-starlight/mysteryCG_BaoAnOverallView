@@ -31,12 +31,18 @@ var DaKaImgTextArray = [
 	"传承宝安",
 	"2023 我在宝安"
 ];
-console.log(DaKaImgTextArray);
+
+// 图片移动
+var parWidth;
+var parHeight;
+var eleImg;
+var store = {
+	scale: 1,
+	moveable: false
+};
 
 $(function() {
-	console.log("v2023-04-11-b1");
-	$("#ImageRange").val(0);
-	ImageRangeOnchange();
+	console.log("v2023-04-26-b1");
 	var a = setInterval(function(){
 		$("#unity-progress-bar-full").css("width",100 * overallProgress + "%");
 		if(overallProgress >= 1){
@@ -52,12 +58,16 @@ $(function() {
 		meta.content =
 			'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
 		document.getElementsByTagName('head')[0].appendChild(meta);
-
+		
+		// 下载按钮
 		document.getElementById('DownloadButton').style.display = "none";
 		
 		isMobile = true;
 	} else {
+		// 下载按钮
 		document.getElementById('DownloadText').style.display = "none";
+		// 视屏形式
+		$("#video>video").attr("class","pcVideo");
 		isMobile = false;
 	}
 	var qrcode = new QRCode(document.getElementById("qrcode"), {
@@ -69,10 +79,13 @@ $(function() {
 		if($("#qrcode>img").attr('src') != 0){
 			fenXiangImgEWMBase64 = $("#qrcode>img").attr('src');
 			document.querySelector("#FenXiangEWM").src = fenXiangImgEWMBase64;
-			console.log(fenXiangImgEWMBase64);
+			// console.log(fenXiangImgEWMBase64);
 			clearInterval(b);
 		}
 	},100);
+	// 图片移动控制器
+	// ImageRangeOnchange();
+	ImgMoveController();
 });
 
 var loadImgNum = 0;
@@ -150,8 +163,15 @@ function OpenWE() {
 function OpenImg(imgNumber) {
 	mtkDom.style.display = "block";
 	imageDom.style.display = "block";
-	document.querySelector("#ImageOnly").src = "";
-	document.querySelector("#ImageOnly").src = "../imageS/" + imgNumber;
+	eleImg.src = "";
+	eleImg.src = "../imageS/" + imgNumber;
+	$('#ImageOnly').width(parWidth);
+	eleImg.style.top = 0;
+	eleImg.style.left = 0;
+	store = {
+		scale: 1,
+		moveable: false
+	};
 	console.log("打开图片" + imgNumber);
 }
 
@@ -219,6 +239,23 @@ function OnLoading() {
 	}, 100);
 }
 
+// 播放视频
+function PlayVideo(videoNum){
+	$("#video").css("display","block");
+	$(".MTK").css("display","block");
+	var videoDom = $("#video>video")[0]
+	videoDom.src = "video/"+videoNum+".mp4";
+	videoDom.load();
+	videoDom.play();
+}
+function EndVideo(){
+	$("#video").css("display","none");
+	$(".MTK").css("display","none");
+	$("#video>video")[0].pause();
+	GlobalUnityInstance.SendMessage('GameController','CloseWebVideo');
+}
+
+
 function CloseShare() {
 	mtkDom.style.display = "none";
 	fenXiangPCDom.style.display = "none";
@@ -244,17 +281,17 @@ function CloseDaKa(number) {
 	console.log("退出打卡");
 }
 
-function ImageRangeOnchange(){
-	$("#ImageRange").on("input",function(){
-		var val = parseInt($("#ImageRange").val())+80;
-		$(".Image>div").css("width",val+"vw");
-		$(".Image>div").css("height",val+"vh");
-		$(".Image")[0].scrollTop = $(".Image")[0].scrollTopMax/2;
-		$(".Image")[0].scrollLeft = $(".Image")[0].scrollLeftMax/2;
-		$("#p1").html($(".Image")[0].scrollTopMax);
-		$("#p2").html($(".Image")[0].scrollLeftMax);
-	});
-}
+// function ImageRangeOnchange(){
+// 	$("#ImageRange").on("input",function(){
+// 		var val = parseInt($("#ImageRange").val())+80;
+// 		$(".Image>div").css("width",val+"vw");
+// 		$(".Image>div").css("height",val+"vh");
+// 		$(".Image")[0].scrollTop = $(".Image")[0].scrollTopMax/2;
+// 		$(".Image")[0].scrollLeft = $(".Image")[0].scrollLeftMax/2;
+// 		$("#p1").html($(".Image")[0].scrollTopMax);
+// 		$("#p2").html($(".Image")[0].scrollLeftMax);
+// 	});
+// }
 
 function SwitchDaKaNumber(numberNext, number, numberPrevious, numberNone) {
 	DaKaImgDom[number].className = "among";
@@ -462,4 +499,140 @@ function downloadIamge(img_id) {
 	a.download = DaKaImgTextArray[thisDaKaNumber];
 	a.href = url;
 	a.dispatchEvent(event);
+}
+
+// 图片移动控制器
+function ImgMoveController(){
+	parWidth = parseInt($(".imgW").width())
+	parHeight = parseInt($(".imgW").height());
+	$("#msg>div").eq(9).html("parW: "+parWidth+",parH: "+parHeight);
+	eleImg = document.querySelector('#ImageOnly');
+	// 缩放处理
+	$(".imgW")[0].addEventListener('touchstart', function (event) {
+		var touches = event.touches;
+		var events = touches[0];
+		var events2 = touches[1];
+
+		var x = eleImg.offsetLeft;
+		var y = eleImg.offsetTop;
+
+		if (!events) {
+			return;
+		}
+
+		event.preventDefault();
+
+		// 第一个触摸点的坐标
+		store.pageX = events.pageX;
+		store.pageY = events.pageY;
+		store.x = x;
+		store.y = y;
+		store.moveable = true;
+		if (events2) {
+			store.pageX2 = events2.pageX;
+			store.pageY2 = events2.pageY;
+		}
+
+		store.originScale = store.scale || 1;
+	});
+	document.addEventListener('touchmove', function (event) {
+		
+		if (!store.moveable) {
+			return;
+		}
+
+		event.preventDefault();
+
+		var touches = event.touches;
+		events = touches[0];
+		events2 = touches[1];
+		
+		if (events2) {
+			// 双指移动
+			if (!store.pageX2) {
+				store.pageX2 = events2.pageX;
+			}
+			if (!store.pageY2) {
+				store.pageY2 = events2.pageY;
+			}
+			// 获取坐标之间的距离
+			var getDistance = function (start, stop) {
+				return Math.hypot(stop.x - start.x, stop.y - start.y);
+			};
+
+			var zoom = getDistance({
+					x: events.pageX,
+					y: events.pageY
+				}, {
+					x: events2.pageX,
+					y: events2.pageY
+				}) /
+				getDistance({
+					x: store.pageX,
+					y: store.pageY
+				}, {
+					x: store.pageX2,
+					y: store.pageY2
+				});
+
+			var newScale = store.originScale * zoom;
+			// 最大缩放比例限制
+			if (newScale > 10) {
+				newScale = 10;
+			}
+			if (newScale < 1) {
+				newScale = 1;
+			}
+			// 记住使用的缩放值
+			store.scale = newScale;
+			// 图像应用缩放效果
+			$('#ImageOnly').width(parWidth*newScale);
+			$("#msg>div").eq(0).html(parWidth*newScale);
+			// 缩放触底停止
+			var imgW = $('#ImageOnly').width();
+			var imgH = $('#ImageOnly').height();
+			if(parseInt($('#ImageOnly').css("left")) < -(imgW/2)){
+				$('#ImageOnly').css("left",-(imgW/2))
+			}
+			if(parseInt($('#ImageOnly').css("top")) < -(imgH/2)){
+				$('#ImageOnly').css("top",-(imgH/2))
+			}
+			$("#msg>div").eq(2).html("w:"+imgW+",h:"+imgH);
+		}
+		else{
+			//console.log(store);
+			var moveX = events.pageX - store.pageX;
+			var moveY = events.pageY - store.pageY;
+			var imageleft = store.x + moveX;
+			var imagetop = store.y + moveY;
+			
+			// 应用位置
+			eleImg.style.top = imagetop+"px";
+			eleImg.style.left = imageleft+"px";
+			// 触边停止
+			if(imagetop > parHeight/2){
+				eleImg.style.top = parHeight/2 + "px";
+			}
+			if(imageleft > parWidth/2){
+				eleImg.style.left = parWidth/2 + "px";
+			}
+			
+			var img = $("#ImageOnly");
+			$("#msg>div").eq(3).html("left:"+img.css("left"));
+			$("#msg>div").eq(4).html("top:"+img.css("top"));
+		}
+	});
+
+	document.addEventListener('touchend', function () {
+		store.moveable = false;
+
+		delete store.pageX2;
+		delete store.pageY2;
+	});
+	document.addEventListener('touchcancel', function () {
+		store.moveable = false;
+
+		delete store.pageX2;
+		delete store.pageY2;
+	});
 }
